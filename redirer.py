@@ -2,7 +2,7 @@
 # encoding: utf-8
 import requests, datetime
 from flask import Flask, redirect, url_for, abort, request
-"""from twilio.twiml import Response as Twiml"""
+from twilio.twiml import Response as Twiml
 
 app = Flask(__name__)
 
@@ -20,7 +20,7 @@ def latest_klasa(klasa, litera):
         return redirect("http://lo01.pl/staszic/?subpage=zastepstwa&klasa=%s %s&data="%(klasa,litera)+z["data"][0], 302)
     abort(418)
 
-"""@app.route("/twilio")
+@app.route("/twilio")
 def twilio_start():
     r = Twiml()
     with r.gather(numDigits=2, action=url_for("twilio_finale"), method="GET") as g:
@@ -48,6 +48,6 @@ def twilio_finale():
             r.say("Nie znaleziono żadnych zastępstw", language="pl-PL")
     else:
         r.say("Błąd serwera. Strona szkoły się psuje albo twoja klasa nie istnieje.", language='pl-PL')
-    return str(r)"""
+    return str(r)
 
 if __name__ == "__main__": app.run(debug=True, port=5006)
